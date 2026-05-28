@@ -1,0 +1,50 @@
+---
+import { siteConfig } from "../config/site";
+---
+<section class="about-section" id="about">
+	<div class="about-inner">
+		<div class="char-stack"><img src={siteConfig.author.image} alt={siteConfig.author.name} /></div>
+		<div class="about-text">
+			<div class="slabel sl-navy">About {siteConfig.author.nickname}</div>
+			<h2>A mom, a storyteller, and a firm believer in big feelings.</h2>
+			<p>I'm a <strong>children's book author</strong> based in Orange County, California, who believes that emotional intelligence is one of the most important gifts we can give a child, and that the earlier they get it the better.</p>
+			<p>I spent years working with kids before I ever wrote a word, and what I learned is simple: children absorb everything when they are having fun. When I became a mom, that belief got a whole lot more personal. I realized that teaching my kid how to handle big feelings wasn’t optional. It was everything.</p>
+			<p>So I write stories that sneak the good stuff in through loveable characters, a little whimsy, and just enough silliness to make the coping skills actually stick.</p>
+			<p>When I'm not writing, you'll find me on <strong><a href={siteConfig.author.instagram.url} target="_blank" rel="noopener noreferrer">Instagram</a></strong>, online shopping for books I definitely don’t need, and convincing every kid I meet that their feelings are their superpower.</p>
+		</div>
+	</div>
+</section>
+
+<style>
+	.about-section {
+		background: var(--gold);
+		border-bottom: 5px solid var(--gold-d);
+		padding: 7rem 0;
+	}
+	.about-inner {
+		max-width: 1100px; margin: 0 auto; padding: 0 3.5rem;
+		display: grid; grid-template-columns: 1fr 1.45fr;
+		gap: 4rem; align-items: center;
+	}
+	.char-stack img { width: 100%; }
+	.about-text h2 { font-family: 'Baloo 2', cursive; font-size: 2.5rem; font-weight: 800; color: var(--navy); line-height: 1.1; margin-bottom: 1rem; }
+		.about-text p  { font-size: 1.05rem; line-height: 1.8; color: var(--navy); margin-bottom: 1rem; font-weight: 700; }
+		.about-text p strong { color: var(--rasp-d); }
+		.about-text p strong a { color: var(--rasp-d); }
+		.about-text p em { color: var(--teal-d); font-style: normal; font-weight: 800; }
+	.soc-row { display: flex; gap: .75rem; margin-top: 1.75rem; flex-wrap: wrap; }
+	.soc-btn {
+		display: inline-flex; align-items: center; gap: .4rem;
+		background: var(--navy); color: #fff; padding: .6rem 1.3rem;
+		border-radius: 50px; font-size: .88rem; font-weight: 800;
+		text-decoration: none; box-shadow: 0 5px 0 rgba(0,0,0,.3);
+		transition: transform .15s, box-shadow .15s; font-family: 'Nunito', sans-serif;
+	}
+	.soc-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 0 rgba(0,0,0,.3); }
+
+	@media(max-width: 900px) {
+		.about-inner { grid-template-columns: 1fr; gap: 2rem; text-align: center; padding: 0 1.5rem; }
+		.about-scrunch { right: calc(50% - 58px); }
+		.soc-row { justify-content: center; }
+	}
+</style>

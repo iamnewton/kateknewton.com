@@ -1,0 +1,23 @@
+---
+// src/components/BackgroundBlobs.astro
+// Reusable fixed animated background blobs + confetti
+---
+<div class="blobs">
+	<div class="blob b1"></div>
+	<div class="blob b2"></div>
+	<div class="blob b3"></div>
+	<div class="blob b4"></div>
+</div>
+<div class="confetti-wrap" id="cf"></div>
+
+<script>
+	const items = ['⭐','✨','🌟','★','💖'];
+	const cf = document.getElementById('cf');
+	for (let i = 0; i < 18; i++) {
+		const s = document.createElement('span');
+		s.className = 'cf';
+		s.innerHTML = items[Math.floor(Math.random() * items.length)];
+		s.style.cssText = `left:${Math.random()*100}vw;font-size:${0.9+Math.random()*1.2}rem;animation-duration:${10+Math.random()*16}s;animation-delay:${Math.random()*14}s;`;
+		cf?.appendChild(s);
+	}
+</script>

@@ -1,0 +1,114 @@
+/* =============================================
+   GLOBAL STYLES — kateknewton.com
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:ital,wght@0,600;0,700;0,800;1,700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --teal: #00BFC4;   --teal-d: #007E82;  --teal-l: #DFFAFA;
+  --gold: #FFD000;   --gold-d: #C49A00;  --gold-l: #FFF8D0;
+  --orange: #FF6B2B; --orange-d: #C44A0A; --orange-l: #FFE8DA;
+  --rasp: #E8215A;   --rasp-d: #A8103A;  --rasp-l: #FFE0EA;
+  --green: #2ECC7A;  --green-d: #1a8f52; --green-l: #DAFAEC;
+  --purple: #7C3AED; --purple-d: #5b21b6; --purple-l: #EDE9FF;
+  --navy: #0D1B2A;
+  --cream: #FFFDF6;  --ink: #1A1A2E;     --ink-s: #44496B;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ===== BACKGROUND BLOBS ===== */
+.blobs { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .15; }
+.b1 { width: 600px; height: 600px; background: var(--teal); top: -150px; left: -150px; animation: bd 20s ease-in-out infinite; }
+.b2 { width: 450px; height: 450px; background: var(--rasp); top: 40%; right: -120px; animation: bd 26s ease-in-out infinite 4s; }
+.b3 { width: 380px; height: 380px; background: var(--gold); bottom: -80px; left: 10%; animation: bd 18s ease-in-out infinite 2s; }
+.b4 { width: 280px; height: 280px; background: var(--green); top: 65%; right: 20%; animation: bd 15s ease-in-out infinite 6s; }
+@keyframes bd {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(40px,-50px) scale(1.08); }
+  66% { transform: translate(-30px,30px) scale(.95); }
+}
+
+/* Confetti */
+.confetti-wrap { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.cf { position: absolute; animation: cfloat linear infinite; opacity: 0; }
+@keyframes cfloat {
+  0%   { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+  5%   { opacity: .65; }
+  95%  { opacity: .65; }
+  100% { transform: translateY(-120px) rotate(540deg); opacity: 0; }
+}
+
+body > * { position: relative; z-index: 1; }
+.blobs, .confetti-wrap { z-index: 0; }
+
+/* ===== SHARED BUTTONS ===== */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .8rem 2rem; border-radius: 50px;
+  font-weight: 800; font-size: 1rem; font-family: 'Nunito', sans-serif;
+  text-decoration: none; cursor: pointer;
+  border: 3px solid var(--navy);
+  transition: transform .15s, box-shadow .15s;
+}
+.btn:hover { transform: translateY(-3px); }
+.btn-rasp   { background: var(--rasp);   color: #fff;         box-shadow: 0 5px 0 var(--rasp-d); }  .btn-rasp:hover   { box-shadow: 0 8px 0 var(--rasp-d); }
+.btn-gold   { background: var(--gold);   color: var(--navy);  box-shadow: 0 5px 0 var(--gold-d); }  .btn-gold:hover   { box-shadow: 0 8px 0 var(--gold-d); }
+.btn-teal   { background: var(--teal);   color: #fff;         box-shadow: 0 5px 0 var(--teal-d); }  .btn-teal:hover   { box-shadow: 0 8px 0 var(--teal-d); }
+.btn-green  { background: var(--green);  color: #fff;         box-shadow: 0 5px 0 var(--green-d); } .btn-green:hover  { box-shadow: 0 8px 0 var(--green-d); }
+.btn-navy   { background: var(--navy);   color: #fff;         box-shadow: 0 5px 0 #000; }           .btn-navy:hover   { box-shadow: 0 8px 0 #000; }
+.btn-white  { background: #fff;          color: var(--navy);  box-shadow: 0 5px 0 #bbb; }           .btn-white:hover  { box-shadow: 0 8px 0 #bbb; }
+.btn-outline-w    { background: transparent; color: #fff;        border: 3px solid #fff; }        .btn-outline-w:hover    { background: #fff; color: var(--navy); }
+.btn-outline-navy { background: transparent; color: var(--navy); border: 3px solid var(--navy); } .btn-outline-navy:hover { background: var(--navy); color: #fff; }
+.btn-sm { padding: .55rem 1.3rem; font-size: .88rem; }
+
+/* ===== SECTION LABELS / PILLS ===== */
+.slabel {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  padding: .4rem 1.1rem; border-radius: 50px; margin-bottom: 1rem; border: 2px solid currentColor;
+}
+.sl-teal   { color: var(--teal-d);  background: var(--teal-l); }
+.sl-rasp   { color: var(--rasp);    background: var(--rasp-l); }
+.sl-gold   { color: var(--gold-d);  background: var(--gold-l); }
+.sl-green  { color: var(--green-d); background: var(--green-l); }
+.sl-purple { color: var(--purple);  background: var(--purple-l); }
+.sl-orange { color: var(--orange-d);background: var(--orange-l); }
+.sl-navy   { color: #fff;           background: var(--navy); }
+
+.section-title {
+  font-family: 'Baloo 2', cursive;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 800; line-height: 1.1; margin-bottom: 1rem;
+}
+.sbody { font-size: 1.05rem; line-height: 1.8; color: var(--ink-s); max-width: 600px; font-weight: 700; }
+
+/* ===== ZIG-ZAG DIVIDERS ===== */
+.zz-top {
+  position: absolute; top: 0; left: 0; right: 0; height: 34px;
+  clip-path: polygon(0 0,3% 100%,6% 0,9% 100%,12% 0,15% 100%,18% 0,21% 100%,24% 0,27% 100%,30% 0,33% 100%,36% 0,39% 100%,42% 0,45% 100%,48% 0,51% 100%,54% 0,57% 100%,60% 0,63% 100%,66% 0,69% 100%,72% 0,75% 100%,78% 0,81% 100%,84% 0,87% 100%,90% 0,93% 100%,96% 0,99% 100%,100% 0);
+}
+.zz-bot {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 34px;
+  clip-path: polygon(0 100%,3% 0,6% 100%,9% 0,12% 100%,15% 0,18% 100%,21% 0,24% 100%,27% 0,30% 100%,33% 0,36% 100%,39% 0,42% 100%,45% 0,48% 100%,51% 0,54% 100%,57% 0,60% 100%,63% 0,66% 100%,69% 0,72% 100%,75% 0,78% 100%,81% 0,84% 100%,87% 0,90% 100%,93% 0,96% 100%,99% 0,100% 100%);
+}
+
+/* ===== SHARED ANIMATIONS ===== */
+@keyframes bop        { 0%,100%{transform:rotate(-1deg) translateY(0)}   50%{transform:rotate(1deg) translateY(-6px)} }
+@keyframes tilt       { 0%,100%{transform:rotate(0)}   30%{transform:rotate(-2deg)}   70%{transform:rotate(2deg)} }
+@keyframes coverBob   { 0%,100%{transform:rotate(-2.5deg) translateY(0)} 50%{transform:rotate(-1deg) translateY(-14px)} }
+@keyframes gentleFloat{ 0%,100%{transform:translateY(0)}  50%{transform:translateY(-14px)} }
+@keyframes bubbleFloat{ 0%,100%{transform:rotate(6deg) translateY(0)}   50%{transform:rotate(4deg) translateY(-7px)} }
+@keyframes tagBob     { 0%,100%{transform:translateY(0) rotate(-3deg)}  50%{transform:translateY(-8px) rotate(-1deg)} }
+@keyframes spinBadge  { to{transform:rotate(360deg)} }
+@keyframes fadeUp     { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes spin       { to{transform:rotate(360deg)} }

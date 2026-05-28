@@ -1,0 +1,113 @@
+---
+import { booksConfig } from "../config/books";
+---
+<section class="hero">
+	<div class="hero-content">
+		<h1>
+			<span class="h1-teal">Loveable</span>
+			characters,<br />
+			<span class="h1-rasp">real</span> coping<br />
+			skills,
+			and
+			<span class="h1-gold">stories so fun</span>
+			kids beg to read<br />
+			them again and again.
+		</h1>
+		<p class="hero-tag">Because kids learn best when they're having too much fun to notice they're learning anything at all.</p>
+		<div class="hero-btns">
+			<a href="#buy" class="btn btn-rasp">Get the Book</a>
+			<a href="#books" class="btn btn-outline">Learn More</a>
+		</div>
+	</div>
+	<div class="hero-visual">
+		<div class="hero-pos">
+			<div class="bubble-float">Now Available!</div>
+			<div class="cover-stage">
+				<img
+					src={booksConfig.bedtimeScaries.cover}
+					alt={booksConfig.bedtimeScaries.title}
+					class="cover-img"
+					width="310" height="400"
+				/>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+.hero {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  align-items: center; max-width: 1100px; margin: 0 auto;
+  padding: 5rem 3.5rem 4rem;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--orange); color: #fff; font-weight: 800; font-size: .9rem;
+  padding: .45rem 1.2rem; border-radius: 50px; margin-bottom: 1.5rem;
+  box-shadow: 0 5px 0 var(--orange-d); animation: bop 2.5s ease-in-out infinite;
+}
+.hero h1 {
+  font-family: 'Baloo 2', cursive;
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
+  font-weight: 800; line-height: 1.05; margin-bottom: 1.5rem; color: var(--ink);
+}
+.h1-teal { color: var(--teal-d); display: inline-block; animation: tilt 3s ease-in-out infinite; }
+.h1-rasp { color: var(--rasp);   display: inline-block; animation: tilt 3s ease-in-out infinite .6s; }
+.h1-gold { color: var(--gold-d); display: inline-block; animation: tilt 3s ease-in-out infinite 1.2s; }
+.hero-tag {
+  font-size: 1.1rem; line-height: 1.8; color: var(--ink-s);
+  max-width: 500px; margin-bottom: 2rem; font-weight: 700; font-style: italic;
+}
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero .btn-outline { border: 3px; background: transparent; color: var(--navy); }
+
+.hero-visual { display: flex; justify-content: center; align-items: center; }
+.hero-pos { position: relative; }
+
+.bubble-float {
+	position: absolute; top: -3rem; right: -1.5rem; z-index: 100;
+  background: var(--teal); color: #fff; font-family: 'Baloo 2', cursive;
+  font-weight: 700; font-size: .88rem; padding: .6rem 1.1rem; line-height: 1.2;
+  border-radius: 22px; box-shadow: 0 4px 0 var(--teal-d);
+  white-space: nowrap; transform: rotate(6deg);
+  animation: bubbleFloat 3.5s ease-in-out infinite;
+}
+.bubble-float::before {
+  content: ''; position: absolute; bottom: -36px; left: 24px;
+  border: 16px solid transparent; border-top-color: var(--teal-d);
+}
+.bubble-float::after {
+  content: ''; position: absolute; bottom: -30px; left: 24px;
+  border: 15px solid transparent; border-top-color: var(--teal);
+}
+.cover-stage { position: relative; display: inline-block; }
+.cover-img {
+  width: 310px; display: block; border-radius: 22px;
+  box-shadow: 8px 8px 0 var(--navy), 13px 13px 0 var(--gold);
+  animation: coverBob 5s ease-in-out infinite;
+}
+.spin-badge {
+  position: absolute; top: -22px; right: -22px;
+  width: 82px; height: 82px; background: var(--gold);
+  clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Baloo 2', cursive; font-size: .58rem; font-weight: 800;
+  color: var(--navy); text-align: center; line-height: 1.2;
+  animation: spinBadge 9s linear infinite;
+}
+.ctag {
+  position: absolute; background: #fff; border: 3px solid var(--navy);
+  border-radius: 50px; padding: .4rem .9rem; font-size: .78rem;
+  font-weight: 800; box-shadow: 3px 3px 0 var(--navy); white-space: nowrap;
+}
+.ct1 { bottom: -18px; left: -28px; color: var(--rasp);   background: var(--rasp-l);  border-color: var(--rasp);  animation: tagBob 4s   ease-in-out infinite; }
+.ct2 { top: 18%; right: -52px;    color: var(--teal-d); background: var(--teal-l); border-color: var(--teal); animation: tagBob 5s   ease-in-out infinite .7s; }
+.ct3 { top: -12px; left: -18px;   color: var(--green-d);background: var(--green-l);border-color: var(--green);animation: tagBob 3.5s ease-in-out infinite 1.3s; }
+
+@media(max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding: 3.5rem 1.5rem; text-align: center; }
+  .hero-tag { margin-left: auto; margin-right: auto; }
+  .hero-btns { justify-content: center; }
+  .bubble-float, .ct1, .ct2, .ct3 { display: none; }
+}
+</style>

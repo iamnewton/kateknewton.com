@@ -1,0 +1,39 @@
+---
+const items = [
+  'Little Levi and the Bedtime Scaries',
+  'Now Available',
+  'School & Library Visits',
+  'Hardcover & Paperback',
+  'Spanish Edition Coming Soon',
+];
+
+const marqueeItems = [...items, ...items];
+---
+
+<div class="marquee-stripe">
+	<div class="marquee-track">
+		{marqueeItems.map((item) => (
+			<>
+				<span class="mi">{item}</span>
+				<span class="ms">✦</span>
+			</>
+		))}
+	</div>
+</div>
+
+<style>
+.marquee-stripe {
+  background: var(--rasp);
+  border-bottom: 4px solid var(--rasp-d);
+  overflow: hidden; padding: .7rem 0;
+  white-space: nowrap;
+}
+.marquee-track {
+  display: flex;
+  align-items: center;
+  animation: mq 24s linear infinite;
+}
+@keyframes mq { to { transform: translateX(-50%); } }
+.mi { display: inline-block; font-weight: 800; font-size: .86rem; color: #fff; letter-spacing: .05em; text-transform: uppercase; padding: 0 1.5rem; }
+.ms { color: var(--gold); padding: 0 .3rem; }
+</style>

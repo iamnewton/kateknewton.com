@@ -1,0 +1,136 @@
+---
+import { booksConfig } from "../config/books";
+import { siteConfig } from "../config/site";
+
+const pillColors = [
+	"p-teal",
+	"p-rasp",
+	"p-gold",
+	"p-green",
+];
+const formatColors = [
+	"fmt-hc",
+	"fmt-pb",
+];
+---
+
+<section class="book-section" id="books">
+	<div class="zz-top" style="background:var(--cream)"></div>
+	<div class="book-inner">
+		<div class="slabel sl-navy">The Book</div>
+		<h2 class="section-title" style="color:#fff;">{booksConfig.bedtimeScaries.title}</h2>
+		<div class="book-grid">
+			<div class="book-cover-wrap">
+				<img
+					src={booksConfig.bedtimeScaries.cover}
+					alt={booksConfig.bedtimeScaries.title}
+					class="book-cover-img"
+					width="320" height="420"
+				/>
+				<div class="comic-bub">"Is there a KID under my bed?!" 😱</div>
+			</div>
+			<div class="book-info">
+				{booksConfig.bedtimeScaries.description.map((paragraph) => (
+					<p set:html={paragraph} />
+				))}
+				<div class="pills">
+					{booksConfig.bedtimeScaries.tags.map((pill, i) => (
+						<span class={`pill ${pillColors[i % pillColors.length]}`}>{pill}</span>
+					))}
+				</div>
+				<div class="format-badges">
+					{booksConfig.bedtimeScaries.formats.map((format, i) => (
+						<span class={`fmt ${formatColors[i % formatColors.length]}`}>{format}</span>
+					))}
+				</div>
+				<p class="small">Published by <a href="https://www.empowermintpress.com/">EmpowerMint Press</a></p>
+			</div>
+		</div>
+	</div>
+	<div class="zz-bot" style="background:var(--gold)"></div>
+</section>
+
+<style>
+	.book-section {
+		background: var(--navy); padding: 7rem 0;
+		position: relative; overflow: hidden;
+	}
+		.book-section .zz-top {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 34px;
+			clip-path: polygon(0 0,3% 100%,6% 0,9% 100%,12% 0,15% 100%,18% 0,21% 100%,24% 0,27% 100%,30% 0,33% 100%,36% 0,39% 100%,42% 0,45% 100%,48% 0,51% 100%,54% 0,57% 100%,60% 0,63% 100%,66% 0,69% 100%,72% 0,75% 100%,78% 0,81% 100%,84% 0,87% 100%,90% 0,93% 100%,96% 0,99% 100%,100% 0);
+		}
+		.book-section .zz-bot {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 34px;
+			clip-path: polygon(0 100%,3% 0,6% 100%,9% 0,12% 100%,15% 0,18% 100%,21% 0,24% 100%,27% 0,30% 100%,33% 0,36% 100%,39% 0,42% 100%,45% 0,48% 100%,51% 0,54% 100%,57% 0,60% 100%,63% 0,66% 100%,69% 0,72% 100%,75% 0,78% 100%,81% 0,84% 100%,87% 0,90% 100%,93% 0,96% 100%,99% 0,100% 100%);
+		}
+		.book-section::before {
+			content: ""; position: absolute; inset: 0;
+			background:
+				radial-gradient(circle at 15% 50%, #00BFC425, transparent 55%),
+				radial-gradient(circle at 85% 30%, #E8215A20, transparent 55%);
+		}
+		.book-section a { color: var(--gold); }
+	.book-inner {
+		max-width: 1100px; margin: 0 auto; padding: 0 3.5rem; position: relative;
+	}
+	.book-grid {
+		display: grid; grid-template-columns: 1fr 1.15fr;
+		gap: 5rem; align-items: start; margin-top: 3rem;
+	}
+	.book-cover-wrap { position: relative; text-align: center; }
+	.book-cover-img {
+		width: 100%; max-width: 320px; display: block; margin: 0 auto;
+		border-radius: 20px;
+		box-shadow: 10px 10px 0 var(--gold), 16px 16px 0 rgba(255,208,0,.22);
+		animation: coverBob 5s ease-in-out infinite;
+	}
+	.comic-bub {
+		position: absolute; left: -10px; bottom: -24px;
+		background: #fff; color: var(--navy); font-family: "Baloo 2", cursive;
+		font-weight: 800; font-size: .85rem; padding: .65rem 1rem;
+		border-radius: 18px; border: 3px solid var(--navy);
+		box-shadow: 4px 4px 0 var(--navy); transform: rotate(-5deg);
+		line-height: 1.35; animation: bubbleFloat 4s ease-in-out infinite; max-width: 175px;
+	}
+	.comic-bub::before {
+		content: ""; position: absolute; top: -19px; right: 22px;
+		border: 9px solid transparent; border-bottom-color: var(--navy);
+	}
+	.comic-bub::after {
+		content: ""; position: absolute; top: -13px; right: 23px;
+		border: 8px solid transparent; border-bottom-color: #fff; z-index: 1;
+	}
+
+	.format-badges { display: flex; gap: .6rem; flex-wrap: wrap; margin: .65rem 0 1.5rem; }
+	.fmt {
+		display: inline-flex; align-items: center; gap: .35rem;
+		padding: .4rem 1rem; border-radius: 50px; font-size: .65rem; font-weight: 800; border: 2px solid currentColor;
+	}
+	.fmt-hc { background: var(--gold-l);  color: var(--gold-d); }
+	.fmt-pb { background: var(--teal-l);  color: var(--teal-d); }
+	.fmt-es { background: linear-gradient(90deg,#C60B1E,#FFC400,#009A44); color: #fff; border-color: transparent; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+
+	.book-info .section-title { color: #fff; }
+	.book-info p { font-size: 1.05rem; line-height: 1.8; color: rgba(255,255,255,.82); margin-bottom: 1rem; font-weight: 700; }
+	.book-info p strong { color: var(--gold); }
+	.book-info .small { font-size: .85rem; }
+	.pills { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: .6rem; }
+	.pill { display: inline-block; padding: .32rem .9rem; border-radius: 50px; font-size: .65rem; font-weight: 800; border: 2px solid currentColor; }
+	.p-teal  { background: var(--teal-l);  color: var(--teal-d); }
+	.p-rasp  { background: var(--rasp-l);  color: var(--rasp); }
+	.p-gold  { background: var(--gold-l);  color: var(--gold-d); }
+	.p-green { background: var(--green-l); color: var(--green-d); }
+
+	@media(max-width: 900px) {
+		.book-grid { grid-template-columns: 1fr; gap: 3rem; }
+		.book-inner { padding: 0 1.5rem; }
+	}
+</style>

@@ -1,0 +1,119 @@
+---
+import { booksConfig } from "../config/books";
+---
+
+<section class="buy-section" id="buy">
+	<div class="buy-inner">
+		<div class="slabel sl-teal">Where to Buy</div>
+		<h2 class="section-title">{booksConfig.bedtimeScaries.retailers.title}</h2>
+		<p class="sbody">{booksConfig.bedtimeScaries.retailers.subtitle}</p>
+
+		<div class="buy-grid">
+			{booksConfig.bedtimeScaries.retailers.cards.map((retailer) => (
+				<a
+					href={retailer.href}
+					target="_blank"
+					rel="noopener noreferrer"
+					class:list={[
+						'retailer-card',
+						{ featured: retailer.featured },
+					]}
+				>
+					<div class="r-icon">{retailer.icon}</div>
+					<div class="r-name">{retailer.name}</div>
+					<div class="r-sub">{retailer.sub}</div>
+					{retailer.badge && ( <div class="r-badge">{retailer.badge}</div>)}
+				</a>
+			))}
+		</div>
+
+		<p class="also-avail">Also available via <a href="https://bookshop.org/p/books/little-levi-and-the-bedtime-scaries-kate-newton/9bcd7a036f71b343?ean=9781733256384&next=t" target="_blank">Bookshop.org</a> and major online book retailers.</p>
+
+		<!-- Shop Local -->
+		<div class="shop-local">
+		<div class="shop-local-head">
+			<h3>&#127981; Shop Local!</h3>
+			<a href="#inquiry" class="btn btn-green btn-sm">&#128203; Wholesale Inquiry</a>
+		</div>
+		<div class="store-card">
+			<div class="store-icon">&#127981;</div>
+			<div class="store-info">
+			<h4>Your Favorite Local Bookshop</h4>
+			<p>Ask your indie bookseller to order it! Available through Ingram. <a href="#inquiry">Contact me</a> for consignment inquiries.</p>
+			</div>
+		</div>
+		<div class="coming-soon-note">
+			<span>&#127807;</span>
+			More local retailers coming soon — stay tuned!
+		</div>
+		<div class="wholesale-note">
+			<div class="wh-icon">&#128230;</div>
+			<div>
+			<strong>Libraries &amp; Schools:</strong> Little Levi is available through Ingram Spark for easy library &amp; school ordering. We also offer bulk pricing through EmpowerMint Press — <a href="#inquiry" style="color:var(--gold)">reach out</a> to learn more.
+			</div>
+		</div>
+		</div>
+	</div>
+</section>
+
+<style>
+.buy-section { background: var(--cream); padding: 6rem 0; }
+.buy-inner { max-width: 1100px; margin: 0 auto; padding: 0 3.5rem; }
+.buy-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1.25rem; margin-top: 2.5rem;
+}
+.retailer-card {
+  background: #fff; border: 3px solid var(--navy); border-radius: 20px;
+  padding: 1.5rem 1rem; text-align: center;
+  box-shadow: 4px 4px 0 var(--navy);
+  transition: transform .2s, box-shadow .2s;
+  text-decoration: none; color: var(--ink);
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+}
+.retailer-card:hover { transform: translateY(-5px) rotate(-1deg); box-shadow: 8px 8px 0 var(--navy); }
+.retailer-card.featured { border-color: var(--teal); box-shadow: 4px 4px 0 var(--teal); }
+.retailer-card.featured:hover { box-shadow: 8px 8px 0 var(--teal); }
+.r-icon { font-size: 2rem; }
+.r-name { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 1rem; color: var(--navy); }
+.r-sub  { font-size: .75rem; color: var(--ink-s); font-weight: 700; }
+.r-badge { background: var(--teal); color: #fff; font-size: .68rem; font-weight: 800; padding: .2rem .6rem; border-radius: 50px; letter-spacing: .04em; }
+
+.also-avail { margin-top: 1.25rem; text-align: center; font-size: .92rem; color: var(--ink-s); font-weight: 700; }
+.also-avail a { color: var(--teal-d); font-weight: 800; text-decoration: underline; }
+
+.shop-local {
+  margin-top: 3rem; background: var(--green-l);
+  border: 3px solid var(--green); border-radius: 24px; padding: 2.5rem;
+  position: relative; overflow: hidden;
+}
+.shop-local::before { content: '🌿'; position: absolute; top: -10px; right: 20px; font-size: 5rem; opacity: .15; }
+.shop-local-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+.shop-local h3 { font-family: 'Baloo 2', cursive; font-size: 1.8rem; font-weight: 800; color: var(--green-d); }
+.store-card {
+  background: #fff; border: 3px solid var(--green); border-radius: 18px;
+  padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem;
+  box-shadow: 4px 4px 0 var(--green); transition: transform .2s;
+}
+.store-card:hover { transform: translateY(-3px); }
+.store-icon { font-size: 2.2rem; }
+.store-info h4 { font-family: 'Baloo 2', cursive; font-size: 1.1rem; font-weight: 800; color: var(--navy); }
+.store-info p { font-size: .85rem; color: var(--ink-s); font-weight: 700; }
+.store-info a { color: var(--green-d); font-weight: 800; text-decoration: none; }
+.store-info a:hover { text-decoration: underline; }
+.coming-soon-note { margin-top: 1.25rem; display: flex; align-items: center; gap: .75rem; font-size: .9rem; font-weight: 700; color: var(--green-d); }
+.coming-soon-note span { font-size: 1.3rem; }
+.wholesale-note {
+  margin-top: 1.25rem; background: var(--navy); color: rgba(255,255,255,.85);
+  border-radius: 16px; padding: 1rem 1.5rem; font-size: .9rem; font-weight: 700; line-height: 1.6;
+  display: flex; align-items: flex-start; gap: .75rem;
+}
+.wholesale-note strong { color: var(--gold); }
+.wh-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: .1rem; }
+
+@media(max-width: 900px) {
+  .buy-grid { grid-template-columns: 1fr 1fr; }
+  .buy-inner { padding: 0 1.5rem; }
+  .shop-local-head { flex-direction: column; }
+}
+</style>

@@ -1,0 +1,28 @@
+---
+// src/layouts/BaseLayout.astro
+export interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = "Kate Newton — Children's Book Author",
+  description = "Kate Newton is the author of Little Levi and the Bedtime Scaries, a children's picture book about anxiety, coping skills, and bedtime courage.",
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:ital,wght@0,600;0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <!-- Global styles are imported in index.astro via the style tag or via import -->
+</head>
+<body>
+  <slot />
+</body>
+</html>

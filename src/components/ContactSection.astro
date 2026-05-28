@@ -1,0 +1,49 @@
+---
+import { siteConfig } from "../config/site";
+---
+
+<section class="contact-section" id="contact">
+	<div class="contact-bub"><span>&#127881;</span> Let's make something magical! <span>&#127881;</span></div>
+	<h2>Say hello!</h2>
+	<p>Whether you're a bookseller, school librarian, event organizer, therapist, or a parent who loved the book and wants to say hi, I would love to hear from you.</p>
+	<div class="contact-btns">
+		<a href=`mailto:${siteConfig.author.email}` class="btn btn-white">Email {siteConfig.author.nickname}</a>
+		<a href={siteConfig.author.instagram.url} class="btn btn-outline" target="_blank">Follow on Instagram</a>
+	</div>
+</section>
+
+<style>
+.contact-section {
+  background: var(--teal); border-top: 5px solid var(--teal-d);
+  padding: 7rem 3.5rem; text-align: center; position: relative; overflow: hidden;
+}
+.contact-section::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 30% 60%, rgba(255,255,255,.12), transparent 55%),
+    radial-gradient(circle at 80% 20%, rgba(255,208,0,.15), transparent 50%);
+  pointer-events: none;
+}
+.contact-bub {
+  display: inline-block; background: rgba(255,255,255,.15); color: #fff;
+  font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 1rem;
+  padding: .5rem 1.5rem; border-radius: 50px;
+  border: 2px solid rgba(255,255,255,.3); margin-bottom: 1.5rem; letter-spacing: .03em;
+}
+.contact-bub span:first-child {
+	margin-right: .5rem;
+}
+.contact-bub span:last-child {
+	margin-left: .5rem;
+}
+.contact-section h2 {
+  font-family: 'Baloo 2', cursive; font-size: 3rem; font-weight: 800;
+  color: #fff; margin-bottom: .75rem; text-shadow: 4px 4px 0 var(--teal-d);
+}
+.contact-section p {
+  color: rgba(255,255,255,.9); font-size: 1.1rem;
+  max-width: 540px; margin: 0 auto 2.5rem; line-height: 1.8; font-weight: 700;
+}
+.contact-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.contact-btns .btn-outline { border: 3px; color: #fff; background: transparent; }
+</style>

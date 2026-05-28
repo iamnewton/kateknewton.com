@@ -1,0 +1,76 @@
+---
+import { booksConfig } from "../config/books";
+---
+<section class="chars-section" id="characters">
+	<div class="chars-inner">
+		<div class="slabel sl-rasp">Meet the Characters</div>
+		<h2 class="section-title">{booksConfig.bedtimeScaries.characters.title}</h2>
+		<p class="sbody">{booksConfig.bedtimeScaries.characters.subtitle}</p>
+		<div class="char-grid">
+			{booksConfig.bedtimeScaries.characters.cards.map((character) => (
+				<div
+					class:list={[
+						'char-card',
+						character.className,
+					]}
+				>
+					<div class="char-speech">{character.speech}</div>
+					<img
+						src={character.image}
+						alt={character.imageAlt}
+						class="char-img"
+						width="190"
+						height="190"
+					/>
+					<div class="char-name">{character.name}</div>
+					<p class="char-desc">{character.description}</p>
+				</div>
+			))}
+		</div>
+		<p class="roman">The art work of the Little Levi series is the creation of Román Díaz, an incredibly talented illustrator from Mexico City. His warmth and imagination bring Little Levi's world to life on every page. <a href="https://www.instagram.com/roman_diaz_illustrator/">Visit Román on Instagram</a>.</p>
+	</div>
+</section>
+
+<style>
+.chars-section { background: var(--cream); padding: 7rem 0; position: relative; overflow: hidden; }
+.chars-inner { max-width: 1100px; margin: 0 auto; padding: 0 3.5rem; }
+.char-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+.char-card {
+  border-radius: 30px; padding: 2.5rem 2rem 2rem; text-align: center;
+  border: 4px solid var(--navy); box-shadow: 7px 7px 0 var(--navy);
+  position: relative; overflow: hidden;
+  transition: transform .2s, box-shadow .2s;
+}
+.chars-section .roman { margin-top: 3rem; line-height: 1.8; }
+.chars-section .roman a { font-weight: 800; color: var(--teal-d); }
+.char-card:hover { transform: translateY(-8px) rotate(.8deg); box-shadow: 12px 12px 0 var(--navy); }
+.char-card.levi   { background: linear-gradient(155deg,#C6F7F8,#91EEEF); }
+.char-card.scrunch { background: linear-gradient(155deg,#FFD6E5,#FFAAC5); }
+.char-card::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(circle,rgba(255,255,255,.4) 1px,transparent 1px);
+  background-size: 20px 20px; pointer-events: none;
+}
+.char-speech {
+  position: absolute; top: 14px; right: 14px;
+  font-family: 'Baloo 2', cursive; font-weight: 800; font-size: .78rem; line-height: 1.2;
+  padding: .35rem .8rem; border-radius: 50px; border: 2px solid var(--navy);
+  animation: bop 3s ease-in-out infinite;
+}
+.levi   .char-speech { background: var(--gold); color: var(--navy); }
+.scrunch .char-speech { background: var(--rasp); color: #fff; }
+.char-img {
+  width: 190px; height: 190px; object-fit: contain;
+  margin: 0 auto 1.25rem; display: block;
+  filter: drop-shadow(0 10px 22px rgba(0,0,0,.18));
+  transition: transform .3s; position: relative; z-index: 1;
+}
+.char-card:hover .char-img { transform: scale(1.09) rotate(-3deg); }
+.char-name { font-family: 'Baloo 2', cursive; font-size: 2.1rem; font-weight: 800; color: var(--navy); margin-bottom: .4rem; position: relative; z-index: 1; }
+.char-desc { font-size: .95rem; line-height: 1.7; color: var(--ink-s); font-weight: 700; position: relative; z-index: 1; }
+
+@media(max-width: 900px) {
+  .char-grid { grid-template-columns: 1fr; }
+  .chars-inner { padding: 0 1.5rem; }
+}
+</style>

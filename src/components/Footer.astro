@@ -1,0 +1,15 @@
+---
+import { siteConfig } from "../config/site";
+---
+
+<footer>
+	<p class="footer-copy">&copy; 2024 {siteConfig.author.name}. All rights reserved.</p>
+</footer>
+
+<style>
+	footer {
+		background: var(--navy); color: rgba(255,255,255,.5);
+		text-align: center; padding: 1.5rem 3rem; font-size: .88rem; line-height: 2;
+	}
+	.footer-copy { font-size: .75rem; opacity: .75; }
+</style>

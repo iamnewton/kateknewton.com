@@ -1,0 +1,50 @@
+---
+// src/components/PressSection.astro
+---
+<section class="press-section" id="press">
+  <div class="press-inner">
+    <div class="slabel sl-purple">&#128240; Press &amp; Media</div>
+    <h2 class="section-title">Media Kit &amp; Press Info</h2>
+    <div class="press-card-big">
+      <div class="press-emoji">&#127912;</div>
+      <div>
+        <h3>Everything you need to cover Little Levi</h3>
+        <p>
+          The Little Levi and the Bedtime Scaries media kit includes book details, author bio,
+          illustrator info, high-resolution cover art and character images, and a press release.
+          Available for journalists, podcasters, bloggers, educators, and anyone looking to feature the book.
+          For review copies or interview requests, please reach out directly.
+        </p>
+        <div class="press-btns">
+          <a href="/media-kit.pdf" target="_blank" class="btn btn-sm" style="background:var(--purple);color:#fff;box-shadow:0 5px 0 var(--purple-d);border-color:var(--purple)">&#128196; Download Media Kit (PDF)</a>
+          <a href="mailto:hello@katenewton.com" class="btn btn-outline-navy btn-sm">&#128140; Email Kate Directly</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.press-section {
+  background: var(--purple-l);
+  border-top: 4px solid var(--purple);
+  padding: 6rem 0;
+}
+.press-inner { max-width: 900px; margin: 0 auto; padding: 0 3.5rem; text-align: center; }
+.press-section .section-title { color: var(--purple); }
+.press-card-big {
+  background: #fff; border: 3px solid var(--navy); border-radius: 28px;
+  padding: 2.5rem 3rem; box-shadow: 6px 6px 0 var(--navy);
+  margin-top: 2.5rem; text-align: left;
+  display: flex; gap: 2.5rem; align-items: center; flex-wrap: wrap;
+}
+.press-emoji { font-size: 4rem; flex-shrink: 0; }
+.press-card-big h3 { font-family: 'Baloo 2', cursive; font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-bottom: .5rem; }
+.press-card-big p  { font-size: .98rem; color: var(--ink-s); line-height: 1.7; font-weight: 700; margin-bottom: 1.25rem; }
+.press-btns { display: flex; gap: .75rem; flex-wrap: wrap; }
+
+@media(max-width: 900px) {
+  .press-card-big { flex-direction: column; gap: 1rem; padding: 2rem; }
+  .press-inner { padding: 0 1.5rem; }
+}
+</style>

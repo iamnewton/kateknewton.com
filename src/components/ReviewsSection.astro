@@ -1,0 +1,77 @@
+---
+import { booksConfig } from "../config/books";
+---
+
+<section class="reviews-section" id="reviews">
+	<div class="reviews-inner">
+		<div class="slabel sl-gold">Reviews</div>
+		<h2 class="section-title" style="color:#fff;">{booksConfig.bedtimeScaries.reviews.title}</h2>
+		<div class="reviews-grid">
+			{booksConfig.bedtimeScaries.reviews.cards.map((r) => (
+				<div class="review-card">
+					<div class="review-stars">
+						<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+					</div>
+					<p class="review-text">"{r.text}"</p>
+					<div class="review-source">
+						<span class="review-author">{r.author}</span>
+						<a href={r.href} class={`review-platform rp-${r.platform.toLowerCase()}`}>{r.platform}</span>
+					</div>
+				</div>
+			))}
+		</div>
+		<div class="review-cta">
+			<div class="review-cta-text">
+				<h3>Loved Little Levi?</h3>
+				<p>Leave a review and help other families discover the book!</p>
+			</div>
+			<div class="review-cta-btns">
+				<a href={booksConfig.bedtimeScaries.reviews.ctas.amazon} target="_blank" class="btn btn-gold btn-sm">Review on Amazon</a>
+				<a href={booksConfig.bedtimeScaries.reviews.ctas.goodreads} target="_blank" class="btn btn-white btn-sm">Review on Goodreads</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.reviews-section { background: var(--navy); padding: 7rem 0; position: relative; overflow: hidden; }
+		.reviews-section::before {
+			content: ''; position: absolute; inset: 0;
+			background:
+				radial-gradient(circle at 80% 20%, #FFD00018, transparent 50%),
+				radial-gradient(circle at 10% 70%, #00BFC420, transparent 50%);
+		}
+	.reviews-inner { max-width: 1100px; margin: 0 auto; padding: 0 3.5rem; position: relative; }
+	.reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+	.review-card {
+		background: rgba(255,255,255,.07); border: 2px solid rgba(255,255,255,.12);
+		border-radius: 22px; padding: 1.75rem;
+		transition: background .2s, transform .2s;
+	}
+		.review-card:hover { background: rgba(255,255,255,.12); transform: translateY(-4px); }
+	.review-stars { display: flex; gap: 3px; margin-bottom: .75rem; }
+		.review-stars span { color: var(--gold); font-size: 1.1rem; }
+	.review-text { font-size: .95rem; line-height: 1.75; color: rgba(255,255,255,.85); font-weight: 700; font-style: italic; margin-bottom: 1rem; }
+	.review-source { display: flex; align-items: center; justify-content: space-between; }
+	.review-author { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: .95rem; color: var(--gold); }
+	.review-platform { font-size: .75rem; font-weight: 800; padding: .25rem .7rem; border-radius: 50px; border: 1.5px solid currentColor; text-decoration: none; }
+	.rp-amazon    { color: #FF9900; border-color: #FF9900; }
+	.rp-goodreads { color: #553B08; background: #F4F1EA; border-color: #553B08; }
+
+	.review-cta {
+		margin-top: 3rem;
+		background: rgba(255,255,255,.07); border: 2px solid rgba(255,255,255,.15);
+		border-radius: 22px; padding: 2rem 2.5rem;
+		display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+	}
+		.review-cta-text h3 { font-family: 'Baloo 2', cursive; font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: .3rem; }
+		.review-cta-text p  { font-size: .92rem; color: rgba(255,255,255,.75); font-weight: 700; }
+	.review-cta-btns { display: flex; gap: .75rem; flex-wrap: wrap; }
+
+	@media(max-width: 900px) {
+		.reviews-grid { grid-template-columns: 1fr; }
+		.reviews-inner { padding: 0 1.5rem; }
+		.review-cta { flex-direction: column; text-align: center; }
+		.review-cta-btns { justify-content: center; }
+	}
+</style>

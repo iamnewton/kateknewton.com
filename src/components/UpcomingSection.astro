@@ -1,0 +1,55 @@
+---
+import { booksConfig } from "../config/books";
+---
+
+<section class="upcoming-section" id="upcoming">
+	<div class="upcoming-inner">
+		<div class="slabel sl-teal">What's Next</div>
+		<h2 class="section-title">{booksConfig.bedtimeScaries.upcoming.title}</h2>
+		<p class="sbody">{booksConfig.bedtimeScaries.upcoming.subtitle}</p>
+		<div class="upcoming-grid">
+			{booksConfig.bedtimeScaries.upcoming.cards.map(card => (
+				<div class="ucard">
+					<span class="ucard-icon">{card.icon}</span>
+					<span class="ucard-status">{card.status}</span>
+					<h3>{card.title}</h3>
+					<p>{card.description}</p>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.upcoming-section {
+		background: var(--teal-l);
+		border-top: 4px solid var(--teal);
+		border-bottom: 4px solid var(--teal);
+		padding: 6rem 0;
+	}
+		.upcoming-section .section-title { color: var(--teal-d); }
+	.upcoming-inner { max-width: 1100px; margin: 0 auto; padding: 0 3.5rem; }
+	.upcoming-grid {
+		display: grid; grid-template-columns: repeat(3,1fr);
+		gap: 1.75rem; margin-top: 3rem; width: 100%;
+	}
+	.ucard {
+		background: #fff; border-radius: 26px; padding: 2rem 1.6rem;
+		border: 3px solid var(--navy); box-shadow: 5px 5px 0 var(--navy);
+		transition: transform .2s, box-shadow .2s;
+	}
+		.ucard:hover { transform: translateY(-5px) rotate(-1deg); box-shadow: 9px 9px 0 var(--navy); }
+		.ucard-icon { font-size: 2.8rem; display: block; margin-bottom: .75rem; animation: bop 3s ease-in-out infinite; }
+		.ucard-status {
+			display: inline-block; font-size: .7rem; font-weight: 800; letter-spacing: .1em;
+			text-transform: uppercase; color: #fff; background: var(--navy);
+			padding: .2rem .7rem; border-radius: 50px; margin-bottom: .6rem;
+		}
+		.ucard h3 { font-family: 'Baloo 2', cursive; font-size: 1.2rem; font-weight: 800; color: var(--navy); margin-bottom: .5rem; line-height: 1.2; }
+		.ucard p  { font-size: .92rem; color: var(--ink-s); line-height: 1.65; font-weight: 700; }
+
+	@media(max-width: 900px) {
+		.upcoming-grid { grid-template-columns: 1fr; max-width: 100%; }
+		.upcoming-inner { padding: 0 1.5rem; }
+	}
+</style>

@@ -1,0 +1,392 @@
+---
+type Field = {
+  type: 'text' | 'email' | 'number' | 'textarea' | 'select';
+  name: string;
+  label: string;
+  placeholder?: string;
+  required?: boolean;
+  full?: boolean;
+  options?: string[];
+};
+
+type InquiryForm = {
+  id: string;
+  icon: string;
+  label: string;
+  inquiryType: string;
+  submitText: string;
+  notice?: string;
+  fields: Field[];
+};
+
+const formspreeUrl = 'https://formspree.io/f/xaqkavnq';
+
+const inquiryForms: InquiryForm[] = [
+  {
+    id: 'school',
+    icon: '🏫',
+    label: 'Schools',
+    inquiryType: 'School Visit',
+    submitText: 'Send Request',
+    fields: [
+      { type: 'text', name: 'name', label: 'Your Name', placeholder: 'Jane Smith', required: true },
+      { type: 'text', name: 'schoolName', label: 'School Name', placeholder: 'Sunshine Elementary' },
+      { type: 'email', name: 'email', label: 'Email Address', placeholder: 'you@school.edu', required: true },
+      {
+        type: 'select',
+        name: 'gradeLevels',
+        label: 'Grade Levels',
+        options: ['Pre-K / Kindergarten', '1st Grade', '2nd Grade', '3rd Grade', 'Mixed ages'],
+      },
+      { type: 'number', name: 'estimatedStudents', label: 'Estimated Students', placeholder: 'e.g. 60' },
+      { type: 'text', name: 'preferredDates', label: 'Preferred Date(s)', placeholder: 'e.g. Spring 2026' },
+      {
+        type: 'textarea',
+        name: 'details',
+        label: 'Tell Kate about your event',
+        placeholder: 'Read-aloud, Q&A, book signing, coping skills activity?',
+        full: true,
+      },
+    ],
+  },
+  {
+    id: 'library',
+    icon: '📚',
+    label: 'Libraries',
+    inquiryType: 'Library Visit',
+    submitText: '🌟 Send Request',
+    fields: [
+      { type: 'text', name: 'name', label: 'Your Name', placeholder: 'Jane Smith', required: true },
+      { type: 'text', name: 'libraryName', label: 'Library Name', placeholder: 'Fullerton Public Library' },
+      { type: 'email', name: 'email', label: 'Email', placeholder: 'you@library.org', required: true },
+      {
+        type: 'select',
+        name: 'eventType',
+        label: 'Event Type',
+        options: ['Storytime read-aloud', 'Author talk', 'Book signing', 'Workshop', 'Other'],
+      },
+      { type: 'text', name: 'preferredDates', label: 'Preferred Date(s)', placeholder: 'e.g. Summer 2026' },
+      { type: 'number', name: 'attendance', label: 'Expected Attendance', placeholder: 'e.g. 40' },
+      {
+        type: 'textarea',
+        name: 'details',
+        label: 'Tell Kate more',
+        placeholder: 'Age range, anything special you have in mind...',
+        full: true,
+      },
+    ],
+  },
+  {
+    id: 'podcast',
+    icon: '🎙️',
+    label: 'Podcast Guest',
+    inquiryType: 'Podcast Guest',
+    submitText: '🎙️ Send Request',
+    fields: [
+      { type: 'text', name: 'name', label: 'Your Name', placeholder: 'Jane Smith', required: true },
+      { type: 'text', name: 'podcastName', label: 'Podcast Name', placeholder: 'The Parenting Pod' },
+      { type: 'email', name: 'email', label: 'Email', placeholder: 'you@podcast.com', required: true },
+      {
+        type: 'select',
+        name: 'audience',
+        label: 'Audience',
+        options: ['Parents and caregivers', 'Educators', "Children's book lovers", 'Mental health community', 'General / mixed'],
+      },
+      {
+        type: 'select',
+        name: 'episodeFormat',
+        label: 'Episode Format',
+        options: ['Interview / conversation', 'Author spotlight', 'Storytime segment', 'Panel discussion', 'Other'],
+      },
+      { type: 'text', name: 'recordingDate', label: 'Approximate Recording Date', placeholder: 'e.g. Summer 2026' },
+      {
+        type: 'textarea',
+        name: 'details',
+        label: 'Tell Kate more',
+        placeholder: "What's your podcast about, what topics would you love to cover, approximate listener count...",
+        full: true,
+      },
+    ],
+  },
+  {
+    id: 'event',
+    icon: '🎉',
+    label: 'Events & Bookstores',
+    inquiryType: 'Events & Bookstores',
+    submitText: '🎉 Send Request',
+    fields: [
+      { type: 'text', name: 'name', label: 'Your Name', placeholder: 'Jane Smith', required: true },
+      { type: 'text', name: 'venueName', label: 'Venue / Bookstore Name', placeholder: 'The Little Bookshop' },
+      { type: 'email', name: 'email', label: 'Email', placeholder: 'you@bookstore.com', required: true },
+      {
+        type: 'select',
+        name: 'eventType',
+        label: 'Event Type',
+        options: ['Book signing', 'Author reading', 'Pop-up event', 'Festival / fair', 'Podcast / media', 'Other'],
+      },
+      { type: 'text', name: 'preferredDates', label: 'Preferred Date(s)', placeholder: 'e.g. Fall 2026' },
+      {
+        type: 'textarea',
+        name: 'details',
+        label: 'Tell Kate about your event',
+        placeholder: 'Location, expected audience, what you have in mind...',
+        full: true,
+      },
+    ],
+  },
+  {
+    id: 'wholesale',
+    icon: '📦',
+    label: 'Wholesale & Consignment',
+    inquiryType: 'Wholesale & Consignment',
+    submitText: '📦 Send Inquiry',
+    notice: 'Wholesale pricing is offered through Ingram Spark and EmpowerMint Press.',
+    fields: [
+      { type: 'text', name: 'name', label: 'Your Name', placeholder: 'Jane Smith', required: true },
+      { type: 'text', name: 'organizationName', label: 'Store / Organization Name', placeholder: 'Whimsy Books & Gifts' },
+      { type: 'email', name: 'email', label: 'Email', placeholder: 'you@store.com', required: true },
+      {
+        type: 'select',
+        name: 'inquiryKind',
+        label: 'Type of Inquiry',
+        options: ['Wholesale via Ingram Spark', 'Consignment inquiry', 'Bulk order (schools/libraries)', 'Boutique / gift shop', 'Other'],
+      },
+      { type: 'number', name: 'estimatedQuantity', label: 'Estimated Quantity', placeholder: 'e.g. 20' },
+      {
+        type: 'textarea',
+        name: 'details',
+        label: 'Tell Kate more',
+        placeholder: "Your store type, location, why you'd love to carry Little Levi...",
+        full: true,
+      },
+    ],
+  },
+];
+---
+
+<section class="inquiry-section" id="inquiry">
+  <div class="inquiry-inner">
+    <div class="slabel sl-rasp">Events, Visits &amp; Wholesale</div>
+    <h2 class="section-title">Let's bring Little Levi to your community!</h2>
+
+    <p class="sbody">
+      School visits, library storytimes, bookstore events, wholesale inquiries,
+      consignment conversations — I love connecting with the people who champion children's books.
+    </p>
+
+    <div class="inquiry-trigger">
+      <p>Ready to connect? Fill out a quick inquiry and I will be in touch!</p>
+      <button class="btn btn-rasp" id="inquiryToggleBtn">
+        Open Inquiry Form ▼
+      </button>
+    </div>
+
+    <div class="inquiry-collapse" id="inquiryCollapse">
+      <div class="inquiry-tabs">
+        {inquiryForms.map((form, index) => (
+          <button
+            class:list={['itab', { active: index === 0 }]}
+            data-tab={form.id}
+          >
+            {form.icon} {form.label}
+          </button>
+        ))}
+      </div>
+
+      {inquiryForms.map((form, index) => (
+        <div
+          class:list={['form-panel', { active: index === 0 }]}
+          id={`panel-${form.id}`}
+        >
+          {form.notice && (
+            <p class="notice">
+              <strong>{form.notice}</strong>
+            </p>
+          )}
+
+          <form
+            action={formspreeUrl}
+            method="POST"
+            class="inquiry-form"
+            data-panel={form.id}
+          >
+            <input
+              type="hidden"
+              name="inquiryType"
+              value={form.inquiryType}
+            />
+
+            <div class="form-grid">
+              {form.fields.map((field) => (
+                <div class:list={['fg', { full: field.full }]}>
+                  <label>{field.label}</label>
+
+                  {field.type === 'select' ? (
+                    <select name={field.name}>
+                      {field.options?.map((option) => (
+                        <option>{option}</option>
+                      ))}
+                    </select>
+                  ) : field.type === 'textarea' ? (
+                    <textarea
+                      name={field.name}
+                      placeholder={field.placeholder}
+                      required={field.required}
+                    />
+                  ) : (
+                    <input
+                      type={field.type}
+                      name={field.name}
+                      placeholder={field.placeholder}
+                      required={field.required}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div class="form-submit">
+              <button class="btn btn-rasp btn-sm submit-btn" type="submit">
+                {form.submitText}
+              </button>
+            </div>
+
+            <div class="success-msg" id={`success-${form.id}`}>
+              🎉 Thank you! Kate will be in touch soon.
+            </div>
+          </form>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+const toggleBtn = document.getElementById('inquiryToggleBtn');
+const collapse = document.getElementById('inquiryCollapse');
+
+toggleBtn?.addEventListener('click', () => {
+  const isOpen = collapse?.classList.toggle('open');
+
+  toggleBtn.innerHTML = isOpen
+    ? 'Close Inquiry Form ▲'
+    : 'Open Inquiry Form ▼';
+});
+
+// Tab switching
+document.querySelectorAll('.itab').forEach((tab) => {
+  tab.addEventListener('click', () => {
+    const panelId = (tab as HTMLElement).dataset.tab;
+    document.querySelectorAll('.itab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(`panel-${panelId}`)?.classList.add('active');
+  });
+});
+
+document.querySelectorAll('.inquiry-form').forEach((form) => {
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const submitButton = form.querySelector('.submit-btn');
+    const panelId = form.dataset.panel;
+    const success = document.getElementById(`success-${panelId}`);
+
+    if (submitButton instanceof HTMLButtonElement) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+    }
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed');
+      }
+
+      // reset form fields
+      form.reset();
+
+      // show success
+      if (success) {
+        success.style.display = 'block';
+      }
+
+      // hide success + restore UI after 10s
+      window.setTimeout(() => {
+        if (success) {
+          success.style.display = 'none';
+        }
+
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.style.display = 'block';
+          submitButton.disabled = false;
+          submitButton.textContent = 'Send Request';
+        }
+      }, 10000);
+    } catch {
+      alert(
+        'Something went wrong. Please try again or email Kate directly.'
+      );
+
+      if (submitButton instanceof HTMLButtonElement) {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send Request';
+      }
+    }
+  });
+});
+</script>
+
+<style>
+.inquiry-section { background: var(--cream); padding: 6rem 0; }
+.inquiry-inner { max-width: 1100px; margin: 0 auto; padding: 0 3.5rem; }
+.inquiry-trigger { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; margin-top: 2rem; }
+.inquiry-trigger p { font-size: 1rem; color: var(--ink-s); font-weight: 700; max-width: 500px; line-height: 1.7; }
+.inquiry-collapse { display: none; margin-top: 2rem; animation: fadeUp .4s ease; }
+.inquiry-collapse.open { display: block; }
+.inquiry-tabs { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 2rem; margin-top: 2rem; }
+.itab {
+  padding: .5rem 1.1rem; border-radius: 50px; font-weight: 800; font-size: .85rem;
+  border: 2.5px solid var(--navy); cursor: pointer; font-family: 'Nunito', sans-serif;
+  transition: all .2s; background: #fff; color: var(--navy);
+}
+.itab.active { background: var(--navy); color: #fff; box-shadow: 0 4px 0 #000; }
+.itab:hover:not(.active) { transform: translateY(-2px); box-shadow: 0 4px 0 var(--navy); }
+.form-panel { display: none; }
+.form-panel.active { display: block; }
+.form-panel .notice { margin-bottom: 1rem; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+.fg { display: flex; flex-direction: column; gap: .35rem; }
+.fg.full { grid-column: 1/-1; }
+.fg label { font-weight: 800; font-size: .85rem; color: var(--navy); }
+.fg input, .fg select, .fg textarea {
+  padding: .7rem 1rem; border-radius: 12px;
+  border: 2.5px solid var(--navy); font-family: 'Nunito', sans-serif;
+  font-size: .92rem; font-weight: 700; background: #fff; color: var(--ink);
+  outline: none; transition: border-color .2s, box-shadow .2s;
+  box-shadow: 3px 3px 0 var(--navy);
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus {
+  border-color: var(--purple); box-shadow: 3px 3px 0 var(--purple);
+}
+.fg textarea { resize: vertical; min-height: 110px; }
+.form-submit { margin-top: 1.25rem; }
+.success-msg {
+  display: none; background: var(--green-l); border: 3px solid var(--green);
+  border-radius: 14px; padding: 1rem 1.4rem; font-weight: 800; color: var(--green-d);
+  margin-top: .75rem; font-size: .98rem;
+}
+
+@media(max-width: 900px) {
+  .inquiry-inner { padding: 0 1.5rem; }
+  .form-grid { grid-template-columns: 1fr; }
+  .fg.full { grid-column: 1; }
+}
+</style>
